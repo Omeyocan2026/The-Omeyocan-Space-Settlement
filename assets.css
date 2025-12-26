@@ -1,0 +1,8 @@
+body{
+    background-image: url(fundal\ site.jpg);
+    margin: 0%;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}

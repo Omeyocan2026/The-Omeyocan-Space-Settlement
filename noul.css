@@ -1,0 +1,95 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(pagina\ principala\ resized.jpg);
+    margin: 0%;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    
+}
+
+@font-face {
+    font-family: 'natia_lu_ruxi';
+    src: url('ZenDots-Regular.ttf');
+}
+
+button{
+    width: 250px;
+    height: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+    font-size: 20px;
+    font-family:'natia_lu_ruxi';
+    background-color: rgb(136, 56, 143);
+    color:white;
+    box-shadow: 2px;
+    border-width: 3px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes spin{
+    from{
+        --angle:0deg;
+    }
+
+    to{
+        --angle:360deg;
+    }
+}
+
+button::after, button::before{
+    content: '';
+    z-index: -1;
+    position: absolute;
+    width: 104%;
+    height: 112%;
+    border-radius: 15px;
+    top:50%;
+    left:50%;
+    translate: -50% -50%;
+    background-image: conic-gradient(from var(--angle),transparent 80%, rgb(187, 76, 163), transparent);
+    animation-name: spin;
+    animation-iteration-count:infinite ;
+    animation-duration: 3s;
+    animation-delay: 0s;
+    animation-timing-function:linear ;
+}
+
+button:hover::after, button:hover::before{
+    filter: opacity(0);
+}
+
+button:hover{
+    animation: trans;
+    animation-duration: 0.5s;
+    transform: scale(1.05,1.05);
+    font-size:22px;
+}
+
+@keyframes trans {
+    from{transform: scale(1,1);}
+    to{transform: scale(1.05,1.05);
+        font-size:22px;}
+}
+
+#div1{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 100px;
+    user-select: none;
+}

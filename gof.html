@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title> Game of Life </title>
+        <link rel = "stylesheet" href = "main.css" />
+    </head>
+
+
+    <body>
+
+        <div id="gof-text">
+            Game of Life
+        </div>
+
+        <div class="titluWrap">
+            <h1 id="titlul"> I. The Game of Life - test it yourself  </h1>
+        </div>
+
+        <div id="div1">
+        <div id = "game">
+            <canvas width = "700" height = "700"> </canvas>
+
+            <div id = "input-div">
+                <div class = "range-holder">
+                    <input type = "range" min = "20" max = "50" 
+                        id = "grid-size-range"
+                    />
+                    <h1 id = "grid-size-header"> </h1>
+                </div>
+
+                <div class = "range-holder">
+                    <input type = "range" id = "alive-cells-range"/>
+                    <h1 id = "alive-cells-header"> </h1>
+                </div>
+
+            </div>
+        </div>
+        
+        <div id="div2"> 
+            <h1 id="pop"> Population: 0</h1>
+            <h1 id="gen"> Generation: 1</h1>
+            <h1 id="blk"> Independent blocks: 0</h1>
+
+            <div class = "range-holder">
+                    <input type = "range" min = "10" max = "60" value="35"
+                        id = "speed-range"
+                    />
+                    <h1 id = "speed-header"> </h1>
+                </div>
+
+            <button>
+                START
+            </button>
+        </div>
+
+        </div>
+
+        <div class="titluWrap">
+            <h1 id="explic"> II. Code explanation </h1>
+        </div>
+
+        <div id = "image-grid"> 
+
+            <div id = "p1">
+            <img src="map.png"/>
+                <p class="scris">
+                The function generates a random configuration of cells based on the size of the grid and the initial number of alive cells. The grid configuration is stored inside a two-dimensional array, which is initialized with the value 0, meaning a dead cell. The algorithm repetitively chooses a random cell until it finds a dead one, making it alive (changes the value from 0 to 1), this while being any remaining cells to change. Once a cell is changed from dead to alive, it is stored in an one-dimensional array, in order to keep evidence of what cells where previously selected. This ensures a random distribution of the alive cells, which are exactly as many as the number used as initial input.
+                </p>
+            </div>
+
+        <div id = "p2">
+            <img src="next-gen.png"/>
+
+            <div class="scris-div">
+                <p class="scris">
+                    The next generation is derived from the previous one, using a simple set of rules. Each dead cell is changed to alive only if it has exactly 3 alive neighbours in the previous generation. Each alive cell dies if it has less than 2 alive neighbours or more than 3 alive neighbours in the previous generation. The algorithm stores the coordinates of each cell that needs to change on the next generation in an one-dimensional array and loops through all of them changing their state.
+                </p>
+
+                <p class="scris">
+                    In order to count the population we loop through all of the cells, checking their state. If their labeled by 1 (alive) we increase the counter by 1. Finally we return our counter.
+                </p>
+
+                <p class="scris">
+                    For counting the number of independent cell blocks we use a recursive fill algorithm. In order to detect a block we call our function on a certain cell that is alive: we label it as dead and we expand in all eight surrounding cells, repeating the process in recursive manner. This way, we detect a cell block, we increase the number of encountered blocks and we mask it, so it is not counted again. 
+                </p>
+            </div>
+        </div>
+
+            <div id = "p3">
+            <img src="game-loop.png"/>
+            <div class="scris-div">
+                <p class="scris">
+                The last two steps of counting the cell blocks are creating a copy of the two-dimensional array that stores our game and looping through each one of its cells. If a cell is labeled as alive, we increase the counter by one, meaning we found a block and we call our "fill" function to mask the found object. Finally we return our block counter.
+                </p>
+
+                <p class="scris">
+                    The game loop function is responsible for creating the next generation, keeping track of the population, number of independent blocks and the number of generations that have passed. It supports the ongoing logic of the game and it displays its current state. 
+                </p>
+            </div>
+            </div>
+        <br>
+        </div>
+
+    </body>
+
+    <script src = "main.js"> </script>
+
+</html>
